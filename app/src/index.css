@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 皇家朱红主题色 */
+    --imperial-red: #8B1A1A;
+    --imperial-red-light: #A52A2A;
+    --imperial-red-dark: #5C0F0F;
+
+    /* 金色系 */
+    --gold-primary: #C9A96E;
+    --gold-bright: #D4AF37;
+    --gold-muted: #9A8B6F;
+
+    /* 背景系 */
+    --ivory: #F5F0E8;
+    --ivory-warm: #EDE6D6;
+    --parchment: #FAF6F0;
+
+    /* 文字系 */
+    --ink-black: #1A1A1A;
+    --ink-grey: #4A4A4A;
+    --ink-light: #7A7A7A;
+
+    /* 字体变量 */
+    --font-display: 'Noto Serif SC', 'ZCOOL XiaoWei', 'Times New Roman', serif;
+    --font-sans: 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+    --font-calligraphy: 'ZCOOL XiaoWei', 'Noto Serif SC', cursive;
+    --font-mono: 'Space Mono', monospace;
+
+    /* 布局变量 */
+    --space-section: 12rem;
+    --space-element: 2rem;
+    --grid-pad: 4vw;
+
+    /* 古籍阅读器变量 */
+    --color-royal-red: #8B1A1A;
+    --color-gold: #C9A96E;
+    --color-ivory: #F5F0E8;
+    --color-ink: #1A1A1A;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink-black);
+    background: var(--ivory);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  a, button {
+    cursor: none;
+  }
+
+  ::selection {
+    background: var(--gold-bright);
+    color: var(--ink-black);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+@keyframes pageFlip {
+  0% {
+    opacity: 0.3;
+    transform: perspective(2000px) rotateY(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: perspective(2000px) rotateY(-5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: perspective(2000px) rotateY(0deg);
+  }
+}
+
+/* 向下滚动提示 */
+@keyframes scroll-down-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(10px);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+}
+
+/* Scrollbar styling - 金色系 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ivory-warm);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-muted);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+
+
+/* 竖排文字容器 */
+.vertical-text-container {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  line-height: 2.2;
+  letter-spacing: 0.15em;
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', serif;
+  padding: 1rem 2rem;
+}
+
+/* 竖排文字滚动条 */
+.vertical-text-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.vertical-text-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.vertical-text-container::-webkit-scrollbar-thumb {
+  background: rgba(201, 160, 80, 0.4);
+  border-radius: 2px;
+}
+
+.vertical-text-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 160, 80, 0.7);
+}
+
+/* 标注词汇样式 */
+.annotation-word {
+  cursor: pointer;
+  border-bottom: 2px dashed var(--color-gold);
+  color: var(--color-royal-red);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.annotation-word:hover {
+  color: var(--color-gold);
+}
+
+/* 横排模式下的段落样式 */
+.prose-classical p {
+  text-indent: 2em;
+  line-height: 2.2;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}

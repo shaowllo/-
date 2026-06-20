@@ -1,0 +1,292 @@
+// app/src/data/mapData.ts
+
+export interface MapPoint {
+  id: string
+  name: string
+  x: number        // SVG viewBox 坐标 (0-1000)
+  y: number
+  type: 'mountain' | 'river' | 'beast' | 'kingdom' | 'plant'
+  region: string   // 所属山系/区域
+  description: string
+  source?: string  // 出处
+  relatedSlug?: string  // 关联神兽 slug，用于跳转到 exhibition 详情
+}
+
+export const mapPoints: MapPoint[] = [
+  // ===== 神兽栖息地 =====
+  {
+    id: 'beast-jiuwei',
+    name: '九尾狐',
+    x: 350, y: 420,
+    type: 'beast',
+    region: '南山经',
+    description: '青丘之山有兽焉，其状如狐而九尾，其音如婴儿，能食人。',
+    source: '《南山经》',
+    relatedSlug: 'jiuwei-hu',
+  },
+  {
+    id: 'beast-fenghuang',
+    name: '凤凰',
+    x: 480, y: 500,
+    type: 'beast',
+    region: '南山经',
+    description: '丹穴之山有鸟焉，其状如鸡，五采而文，名曰凤皇。',
+    source: '《南山经》',
+    relatedSlug: 'fenghuang',
+  },
+  {
+    id: 'beast-zhulong',
+    name: '烛龙',
+    x: 200, y: 150,
+    type: 'beast',
+    region: '海外经',
+    description: '钟山之神，名曰烛阴，视为昼，瞑为夜，吹为冬，呼为夏。',
+    source: '《海外北经》',
+    relatedSlug: 'zhulong',
+  },
+  {
+    id: 'beast-taotie',
+    name: '饕餮',
+    x: 550, y: 250,
+    type: 'beast',
+    region: '北山经',
+    description: '钩吾之山有兽焉，其状如羊身人面，虎齿人爪，音如婴儿。',
+    source: '《北山经》',
+    relatedSlug: 'taotie',
+  },
+  {
+    id: 'beast-qilin',
+    name: '麒麟',
+    x: 700, y: 300,
+    type: 'beast',
+    region: '海外经',
+    description: '仁兽也，麋身牛尾，一角，角端有肉，设武备而不为害。',
+    source: '《海外经》',
+    relatedSlug: 'qilin',
+  },
+  {
+    id: 'beast-baize',
+    name: '白泽',
+    x: 300, y: 200,
+    type: 'beast',
+    region: '海内经',
+    description: '昆仑山上通灵神兽，通体雪白，能言，通晓天下鬼神之事。',
+    source: '《海内经》',
+    relatedSlug: 'baize',
+  },
+
+  // ===== 名山 =====
+  {
+    id: 'mt-zhaoyao',
+    name: '招摇之山',
+    x: 400, y: 450,
+    type: 'mountain',
+    region: '南山经',
+    description: '南山经之首，临于西海之上，多桂，多金玉。',
+    source: '《南山经》',
+  },
+  {
+    id: 'mt-tangting',
+    name: '堂庭之山',
+    x: 420, y: 470,
+    type: 'mountain',
+    region: '南山经',
+    description: '多棪木，多白猿，多水玉，多黄金。',
+    source: '《南山经》',
+  },
+  {
+    id: 'mt-chuyang',
+    name: '杻阳之山',
+    x: 450, y: 430,
+    type: 'mountain',
+    region: '南山经',
+    description: '其阳多赤金，其阴多白金。有兽焉，名曰鹿蜀。',
+    source: '《南山经》',
+  },
+  {
+    id: 'mt-qianlai',
+    name: '钱来之山',
+    x: 350, y: 300,
+    type: 'mountain',
+    region: '西山经',
+    description: '西山经华山之首，其上多松，其下多洗石。',
+    source: '《西山经》',
+  },
+  {
+    id: 'mt-songguo',
+    name: '松果之山',
+    x: 330, y: 280,
+    type: 'mountain',
+    region: '西山经',
+    description: '濩水出焉，北流注于渭，其中多铜。',
+    source: '《西山经》',
+  },
+  {
+    id: 'mt-taihua',
+    name: '太华之山',
+    x: 300, y: 290,
+    type: 'mountain',
+    region: '西山经',
+    description: '削成而四方，其高五千仞，其广十里，鸟兽莫居。',
+    source: '《西山经》',
+  },
+  {
+    id: 'mt-danxue',
+    name: '丹穴之山',
+    x: 480, y: 500,
+    type: 'mountain',
+    region: '南山经',
+    description: '其上多金玉，丹水出焉。有鸟焉，名曰凤皇。',
+    source: '《南山经》',
+  },
+  {
+    id: 'mt-danhu',
+    name: '单狐之山',
+    x: 450, y: 180,
+    type: 'mountain',
+    region: '北山经',
+    description: '北山经之首，多机木，其上多华草。',
+    source: '《北山经》',
+  },
+  {
+    id: 'mt-qiuru',
+    name: '求如之山',
+    x: 480, y: 160,
+    type: 'mountain',
+    region: '北山经',
+    description: '其上多铜，其下多玉，无草木。',
+    source: '《北山经》',
+  },
+  {
+    id: 'mt-qingqiu',
+    name: '青丘之山',
+    x: 350, y: 420,
+    type: 'mountain',
+    region: '南山经',
+    description: '其阳多玉，其阴多青䴔。有兽焉，其状如狐而九尾。',
+    source: '《南山经》',
+  },
+  {
+    id: 'mt-kunlun',
+    name: '昆仑山',
+    x: 300, y: 200,
+    type: 'mountain',
+    region: '海内经',
+    description: '帝之下都，万神所在。赤水出焉，白泽居之。',
+    source: '《海内经》',
+  },
+  {
+    id: 'mt-zhangwei',
+    name: '章尾山',
+    x: 200, y: 150,
+    type: 'mountain',
+    region: '海外经',
+    description: '西北海之外，赤水之北。有神人面蛇身，名曰烛龙。',
+    source: '《海外北经》',
+  },
+
+  // ===== 古国邦国 =====
+  {
+    id: 'kg-wuqi',
+    name: '无启国',
+    x: 150, y: 350,
+    type: 'kingdom',
+    region: '海外经',
+    description: '无启国在长股东，其人无嗣，食土，死复生。',
+    source: '《海外北经》',
+  },
+  {
+    id: 'kg-daren',
+    name: '大人国',
+    x: 750, y: 200,
+    type: 'kingdom',
+    region: '海外经',
+    description: '大人国在海中，为人大，坐而削船。',
+    source: '《海外东经》',
+  },
+  {
+    id: 'kg-junzi',
+    name: '君子国',
+    x: 800, y: 350,
+    type: 'kingdom',
+    region: '海外经',
+    description: '君子国在其北，衣冠带剑，食兽，使二大虎在旁。',
+    source: '《海外东经》',
+  },
+  {
+    id: 'kg-nvchou',
+    name: '女子国',
+    x: 200, y: 500,
+    type: 'kingdom',
+    region: '海外经',
+    description: '女子国在巫咸北，两女子居，水周之。',
+    source: '《海外西经》',
+  },
+  {
+    id: 'kg-sanyao',
+    name: '三苗国',
+    x: 600, y: 400,
+    type: 'kingdom',
+    region: '海外经',
+    description: '三苗国在赤水东，其为人相随。',
+    source: '《海外南经》',
+  },
+
+  // ===== 水系 =====
+  {
+    id: 'riv-liji',
+    name: '丽麂之水',
+    x: 400, y: 480,
+    type: 'river',
+    region: '南山经',
+    description: '出招摇之山，西流注于海。',
+    source: '《南山经》',
+  },
+  {
+    id: 'riv-guai',
+    name: '怪水',
+    x: 450, y: 440,
+    type: 'river',
+    region: '南山经',
+    description: '出杻阳之山，东流注于宪翼之水。',
+    source: '《南山经》',
+  },
+  {
+    id: 'riv-huoshui',
+    name: '濩水',
+    x: 330, y: 285,
+    type: 'river',
+    region: '西山经',
+    description: '出松果之山，北流注于渭。',
+    source: '《西山经》',
+  },
+  {
+    id: 'riv-danshui',
+    name: '丹水',
+    x: 480, y: 510,
+    type: 'river',
+    region: '南山经',
+    description: '出丹穴之山，南流注于渤海。',
+    source: '《南山经》',
+  },
+  {
+    id: 'riv-chishui',
+    name: '赤水',
+    x: 300, y: 210,
+    type: 'river',
+    region: '海内经',
+    description: '出昆仑之墟，东南流注于氾天之水。',
+    source: '《海内经》',
+  },
+]
+
+// 分类筛选选项
+export const MAP_FILTERS = [
+  { key: 'all', label: '全部' },
+  { key: 'mountain', label: '山' },
+  { key: 'river', label: '水' },
+  { key: 'beast', label: '兽' },
+  { key: 'kingdom', label: '国' },
+] as const
+
+export type MapFilterKey = (typeof MAP_FILTERS)[number]['key']
