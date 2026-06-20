@@ -58,6 +58,30 @@
     background: var(--gold-bright);
     color: var(--ink-black);
   }
+
+  /* 暗色模式 */
+  [data-theme='dark'] {
+    --imperial-red: #C0392B;
+    --imperial-red-light: #D44637;
+    --imperial-red-dark: #8B1A1A;
+
+    --gold-primary: #D4AF37;
+    --gold-bright: #F0D060;
+    --gold-muted: #8B7D5E;
+
+    --ivory: #1a1814;
+    --ivory-warm: #242118;
+    --parchment: #1e1b15;
+
+    --ink-black: #e8e4dc;
+    --ink-grey: #a09888;
+    --ink-light: #7a7260;
+
+    --color-royal-red: #C0392B;
+    --color-gold: #D4AF37;
+    --color-ivory: #1a1814;
+    --color-ink: #e8e4dc;
+  }
 }
 
 @keyframes blink {

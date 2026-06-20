@@ -6,6 +6,7 @@ import CustomCursor from './components/CustomCursor';
 import { siteConfig } from './config';
 import { getExhibitionBySlug } from './lib/exhibitions';
 import { audioManager } from './lib/audioManager';
+import { useAppStore } from './stores/appStore';
 
 // 非首屏 Section 全部懒加载 — 用户滚动时才下载代码
 const MountainsChapter = lazy(() => import('./sections/MountainsChapter'));
@@ -22,6 +23,18 @@ const SectionFallback = () => <div style={{ minHeight: '100vh', background: 'var
 
 export default function App() {
   const [pathname, setPathname] = useState(() => window.location.pathname);
+  const darkMode = useAppStore((s) => s.darkMode);
+  const audioMuted = useAppStore((s) => s.audioMuted);
+
+  // 暗色模式
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  // 音效静音同步
+  useEffect(() => {
+    audioManager.setMuted(audioMuted);
+  }, [audioMuted]);
 
   useEffect(() => {
     // Enable smooth scroll behavior
