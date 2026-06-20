@@ -4,6 +4,7 @@ import SectionHeader from '../components/SectionHeader';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { exhibitionsConfig } from '../config';
 import { exhibitions, type Exhibition } from '../lib/exhibitions';
+import { audioManager } from '../lib/audioManager';
 
 function isChineseChar(char: string): boolean {
   return /[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]/.test(char);
@@ -136,6 +137,7 @@ function ExhibitionItem({
   }, [exhibition.title]);
 
   const onMouseEnter = useCallback(() => {
+    audioManager.play('hoverReveal');
     const item = itemRef.current;
     if (!item) return;
     boundsRef.current = item.getBoundingClientRect();

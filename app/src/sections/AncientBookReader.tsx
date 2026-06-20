@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionHeader from '../components/SectionHeader';
+import { audioManager } from '../lib/audioManager';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,6 +85,7 @@ export default function AncientBookReader() {
   const nextPage = useCallback(() => {
     if (isFlipping || currentSpread >= totalSpreads - 1) return;
     setIsFlipping(true);
+    audioManager.play('pageFlip');
     setCurrentSpread(prev => prev + 1);
     setTimeout(() => setIsFlipping(false), 800);
   }, [currentSpread, isFlipping, totalSpreads]);
@@ -91,6 +93,7 @@ export default function AncientBookReader() {
   const prevPage = useCallback(() => {
     if (isFlipping || currentSpread <= 0) return;
     setIsFlipping(true);
+    audioManager.play('pageFlip');
     setCurrentSpread(prev => prev - 1);
     setTimeout(() => setIsFlipping(false), 800);
   }, [currentSpread, isFlipping]);

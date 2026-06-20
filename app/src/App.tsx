@@ -5,6 +5,7 @@ import ExhibitionDetail from './sections/ExhibitionDetail';
 import CustomCursor from './components/CustomCursor';
 import { siteConfig } from './config';
 import { getExhibitionBySlug } from './lib/exhibitions';
+import { audioManager } from './lib/audioManager';
 
 // 非首屏 Section 全部懒加载 — 用户滚动时才下载代码
 const MountainsChapter = lazy(() => import('./sections/MountainsChapter'));
@@ -28,6 +29,9 @@ export default function App() {
 
     // Handle anchor link clicks for smooth scroll
     const handleClick = (e: MouseEvent) => {
+      // 初始化音效系统（需要用户手势）
+      audioManager.init();
+      
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       if (anchor) {

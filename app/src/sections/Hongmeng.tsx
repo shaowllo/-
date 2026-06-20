@@ -1,9 +1,10 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import VoidShader from './VoidShader';
+import { audioManager } from '../lib/audioManager';
 
 export default function Hongmeng() {
   const sectionRef = useRef<HTMLElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
@@ -12,7 +13,7 @@ export default function Hongmeng() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 });
+      const tl = gsap.timeline({ delay: 0.5 });
 
       if (containerRef.current) {
         tl.fromTo(
@@ -29,6 +30,7 @@ export default function Hongmeng() {
           { opacity: 1, y: 0, duration: 1, ease: 'power3.out' },
           '-=0.4'
         );
+        tl.call(() => audioManager.play('bellChime'), undefined, '-=0.6');
       }
 
       if (lineRef.current) {
@@ -71,23 +73,29 @@ export default function Hongmeng() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'var(--ivory)',
+        background: '#0a0806',
         position: 'relative',
         padding: '4rem 4vw',
+        overflow: 'hidden',
       }}
     >
+      {/* WebGL 着色器背景 */}
+      <VoidShader />
+
+      {/* 左卷轴装饰线 */}
       <div
-        ref={scrollRef}
         style={{
           position: 'absolute',
           top: 0,
           left: '5%',
           width: '2px',
           height: '100%',
-          background: 'linear-gradient(to bottom, transparent, var(--gold-muted), transparent)',
-          opacity: 0.3,
+          background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.4), transparent)',
+          opacity: 0.5,
+          zIndex: 1,
         }}
       />
+      {/* 右卷轴装饰线 */}
       <div
         style={{
           position: 'absolute',
@@ -95,23 +103,27 @@ export default function Hongmeng() {
           right: '5%',
           width: '2px',
           height: '100%',
-          background: 'linear-gradient(to bottom, transparent, var(--gold-muted), transparent)',
-          opacity: 0.3,
+          background: 'linear-gradient(to bottom, transparent, rgba(201,169,110,0.4), transparent)',
+          opacity: 0.5,
+          zIndex: 1,
         }}
       />
 
+      {/* 古籍容器 — 叠加在着色器之上 */}
       <div
         ref={containerRef}
         style={{
           position: 'relative',
+          zIndex: 1,
           width: '100%',
           maxWidth: '800px',
-          background: 'var(--parchment)',
+          background: 'rgba(245, 240, 232, 0.92)',
+          backdropFilter: 'blur(12px)',
           border: '2px solid var(--gold-primary)',
           borderRadius: '4px',
           padding: 'clamp(3rem, 8vw, 6rem) clamp(2rem, 6vw, 4rem)',
           textAlign: 'center',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.08), inset 0 0 80px rgba(201,169,110,0.05)',
+          boxShadow: '0 20px 60px rgba(0,0,0,0.3), 0 0 120px rgba(201,169,110,0.08), inset 0 0 80px rgba(201,169,110,0.04)',
           opacity: 0,
           transformOrigin: 'center center',
         }}
@@ -173,6 +185,7 @@ export default function Hongmeng() {
             margin: 0,
             lineHeight: 1.2,
             opacity: 0,
+            textShadow: '0 2px 12px rgba(139,26,26,0.2)',
           }}
         >
           山海经
